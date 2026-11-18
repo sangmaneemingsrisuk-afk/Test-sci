@@ -1,0 +1,1741 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d766e">
+<title>ภารกิจนักวิทย์ ป.5 | การเปลี่ยนสถานะของสสาร</title>
+<style>
+:root {
+  --primary:#0d766e;
+  --primary-dark:#07534e;
+  --primary-soft:#e5f6f2;
+  --navy:#18334d;
+  --muted:#65778a;
+  --line:#dce8ed;
+  --bg:#f4f9fb;
+  --white:#fff;
+  --amber:#ffcc70;
+  --success:#16824f;
+  --danger:#c3434d;
+  --shadow:0 14px 38px rgba(17,61,78,.08);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  margin:0;
+  color:var(--navy);
+  font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;
+  background:radial-gradient(circle at 5% 0%,#d9f7ef 0%,transparent 36%),radial-gradient(circle at 100% 45%,#e1efff 0%,transparent 37%),var(--bg);
+  min-height:100vh;
+  line-height:1.65;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.48;cursor:not-allowed}
+button:focus-visible,input:focus-visible{outline:3px solid #ffbb48;outline-offset:3px}
+.shell{width:min(960px,100%);margin:auto;padding:18px 20px 25px}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin-bottom:25px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{
+  width:47px;height:47px;border-radius:15px;
+  background:var(--primary);display:grid;place-items:center;
+  font-size:25px;box-shadow:0 5px 12px #0d766e30;
+}
+.brand-name{font-weight:900;font-size:18px;line-height:1.3}
+.brand-sub{font-size:11px;color:var(--muted)}
+.teacher-button{
+  border:1px solid #c9dedf;border-radius:13px;
+  background:#fff;color:var(--primary-dark);
+  padding:10px 15px;font-size:13px;font-weight:800;
+  white-space:nowrap;
+}
+.teacher-button:hover{background:var(--primary-soft)}
+.screen{animation:fadeUp .25s ease}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero{
+  background:linear-gradient(122deg,#0a6860,#149b8e);
+  border-radius:26px;padding:32px 35px;
+  color:white;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.hero:before{
+  content:"";position:absolute;right:-80px;top:-100px;
+  width:330px;height:330px;border:48px solid #ffffff10;
+  border-radius:50%;
+}
+.hero:after{
+  content:"";position:absolute;right:70px;bottom:-90px;
+  width:190px;height:190px;border:30px solid #ffffff0b;
+  border-radius:50%;
+}
+.hero-content{position:relative;z-index:1}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#ffffff24;border:1px solid #ffffff3c;
+  padding:5px 12px;border-radius:100px;
+  font-size:12px;font-weight:700;
+}
+.hero h1{
+  font-size:clamp(26px,5vw,40px);
+  line-height:1.35;margin:18px 0 9px;letter-spacing:-.6px;
+}
+.hero p{color:#e1fffa;font-size:14px;max-width:550px;margin:0}
+.hero-art{
+  display:flex;align-items:center;gap:11px;
+  margin:26px 0 3px;font-size:26px;
+}
+.hero-art span{
+  display:grid;place-items:center;
+  width:57px;height:57px;border-radius:18px;
+  background:#ffffff20;border:1px solid #ffffff2e;
+}
+.hero-art b{font-size:16px;color:#ffdb8a}
+.stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;margin:18px 0;
+}
+.stat{
+  padding:15px 10px;background:#fff;border-radius:15px;
+  border:1px solid var(--line);text-align:center;
+}
+.stat strong{display:block;font-size:18px}
+.stat small{font-size:11px;color:var(--muted)}
+.card{
+  background:white;border:1px solid var(--line);
+  border-radius:23px;box-shadow:var(--shadow);padding:25px;
+}
+.start-grid{display:grid;grid-template-columns:1fr 1fr;gap:21px}
+.section-label{font-size:12px;font-weight:900;color:var(--primary);letter-spacing:.25px}
+.card h2{font-size:21px;margin:7px 0 10px}
+.description{font-size:13px;color:var(--muted);margin:0 0 15px}
+.input-label{display:block;font-weight:800;font-size:13px;margin:15px 0 7px}
+.seat-input{
+  display:block;width:100%;padding:13px 15px;
+  border:2px solid var(--line);border-radius:12px;
+  background:#fcfefe;color:var(--navy);
+  font-size:17px;transition:border-color .15s;
+}
+.seat-input:focus{border-color:var(--primary);outline:none}
+.primary-btn{
+  border:0;border-radius:13px;background:var(--primary);
+  padding:14px 19px;color:#fff;font-weight:900;
+  transition:background .15s,transform .15s;
+}
+.primary-btn:hover:not(:disabled){background:var(--primary-dark);transform:translateY(-1px)}
+.full{width:100%;margin-top:15px}
+.outline-btn{
+  padding:13px 18px;border:1px solid #c8dbdf;
+  background:white;border-radius:13px;
+  color:var(--navy);font-weight:800;
+}
+.outline-btn:hover{background:#eff7f8}
+.error{
+  color:var(--danger);font-size:12px;font-weight:700;
+  min-height:18px;margin:7px 0 0;
+}
+.info-list{list-style:none;margin:8px 0 0;padding:0}
+.info-list li{
+  padding:9px 0;border-bottom:1px solid #edf2f5;
+  font-size:13px;display:flex;gap:9px;align-items:flex-start;
+}
+.info-list li:last-child{border:0}
+.info-list b{color:var(--primary);white-space:nowrap}
+.pill{
+  display:inline-block;border-radius:30px;
+  background:var(--primary-soft);color:var(--primary-dark);
+  padding:4px 10px;font-size:11px;font-weight:800;
+}
+.tip{
+  background:#fff8e8;color:#8c641c;padding:12px;
+  border-radius:12px;font-size:12px;margin-top:15px;
+}
+.quiz-status{
+  background:white;border:1px solid var(--line);
+  border-radius:18px;padding:17px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;
+}
+.status-title{font-size:12px;color:var(--muted)}
+.status-value{font-size:18px;font-weight:900}
+.timer{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--primary-soft);border-radius:14px;
+  padding:8px 14px;font-weight:900;font-size:19px;
+  font-variant-numeric:tabular-nums;
+}
+.timer.warning{background:#fff0d6;color:#9e5900}
+.timer.danger{background:#ffe8e8;color:var(--danger)}
+.progress-area{margin:24px 0 16px}
+.progress-text{display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:10px}
+.progress-track{height:11px;background:#dfebee;border-radius:20px;overflow:hidden}
+.progress-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,#14a38f,#55c8a6);
+  transition:width .25s;border-radius:20px;
+}
+.question-card{padding:27px}
+.question-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:15px}
+.question-number{
+  background:var(--primary);color:white;border-radius:9px;
+  padding:5px 11px;font-size:12px;font-weight:900;
+}
+.question-topic{color:var(--muted);font-size:12px}
+.question-card h2{font-size:21px;line-height:1.55;margin:0 0 15px}
+.scenario{
+  font-size:15px;line-height:1.9;
+  background:#f4f8fb;padding:16px 18px;
+  border:1px solid #e6eff3;border-radius:15px;margin:0 0 13px;
+}
+.evidence{
+  border-left:4px solid #f1b947;
+  background:#fffbf0;padding:13px 17px;border-radius:0 13px 13px 0;
+  margin-bottom:21px;
+}
+.evidence strong{color:#906111;font-size:12px}
+.evidence p{margin:5px 0 0;font-size:14px;line-height:1.85}
+.choice-label{font-size:13px;font-weight:900;margin:0 0 10px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{
+  display:flex;text-align:left;align-items:center;gap:11px;
+  padding:13px;border:2px solid #e2ebef;
+  border-radius:14px;background:#fff;color:var(--navy);
+  min-height:74px;font-size:13px;line-height:1.65;
+}
+.option:hover:not(:disabled){border-color:#64c9b8;background:#f5fcfa}
+.option.selected{
+  border-color:var(--primary);background:#edf9f5;
+  box-shadow:0 0 0 1px #0d766e15;
+}
+.option:disabled{cursor:default;opacity:1}
+.option-letter{
+  min-width:32px;width:32px;height:32px;
+  border-radius:10px;background:#edf2f6;
+  display:grid;place-items:center;
+  font-weight:900;flex-shrink:0;
+}
+.option.selected .option-letter{background:var(--primary);color:white}
+.feedback{
+  margin-top:18px;padding:16px 18px;
+  background:#eaf8f2;border:1px solid #b8e5d3;
+  border-radius:14px;
+}
+.feedback strong{font-size:14px;color:var(--primary-dark)}
+.feedback p{margin:6px 0 0;font-size:13px;line-height:1.85}
+.actions{
+  display:flex;justify-content:flex-end;gap:10px;
+  flex-wrap:wrap;margin-top:23px;
+}
+.actions button{min-width:185px}
+.caption{
+  text-align:center;color:var(--muted);
+  font-size:11px;margin-top:17px;
+}
+.result-hero{
+  background:linear-gradient(135deg,#0b7168,#1aa48c);
+  border-radius:23px;color:white;
+  padding:28px;text-align:center;
+}
+.result-hero h2{font-size:25px;margin:8px 0}
+.result-score{font-size:57px;line-height:1.2;font-weight:900;margin:8px 0}
+.result-hero p{font-size:13px;color:#e6fff9}
+.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}
+.review-item{
+  margin:13px 0;background:white;border:1px solid var(--line);
+  border-radius:17px;padding:19px;
+}
+.review-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.review-head strong{font-size:14px}
+.tag-correct,.tag-wrong,.tag-empty{
+  padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;
+}
+.tag-correct{background:#e4f7ec;color:#15824c}
+.tag-wrong{background:#ffeaea;color:#bc4248}
+.tag-empty{background:#edf1f5;color:#687583}
+.review-item h3{font-size:14px;margin:12px 0 6px}
+.review-item p{font-size:12px;line-height:1.85;margin:6px 0;color:#46586b}
+.answer-box{
+  background:#edf8f4;padding:12px 14px;
+  border-radius:11px;font-size:12px;
+  margin-top:12px;line-height:1.9;
+}
+.answer-box strong{color:#087157}
+.student-answer{font-weight:800;font-size:12px;margin-top:10px}
+footer{
+  border-top:1px solid #dce6e8;margin-top:28px;
+  padding:18px;text-align:center;
+  font-size:11px;color:var(--muted);
+}
+.backdrop{
+  position:fixed;inset:0;background:#10283bc0;
+  z-index:20;display:flex;justify-content:flex-end;
+}
+.teacher-panel{
+  background:#f7fafb;width:min(580px,100%);
+  height:100%;overflow:auto;
+  box-shadow:-12px 0 35px #0002;
+}
+.teacher-head{
+  background:var(--navy);color:white;
+  padding:20px 22px;
+  display:flex;justify-content:space-between;gap:12px;
+  align-items:center;
+}
+.teacher-head h2{font-size:20px;margin:0}
+.teacher-head small{color:#d1e5ef}
+.close-btn{
+  border:1px solid #ffffff40;background:#ffffff18;
+  color:white;width:36px;height:36px;
+  border-radius:10px;font-size:20px;
+}
+.teacher-body{padding:20px}
+.teacher-section{
+  background:white;border:1px solid var(--line);
+  border-radius:17px;padding:19px;margin-bottom:15px;
+}
+.teacher-section h3{font-size:15px;margin:0 0 10px}
+.teacher-input-row{display:flex;gap:9px;align-items:center}
+.teacher-input-row input{flex:1;min-width:0}
+.teacher-input-row button{white-space:nowrap}
+.switch-row{
+  display:flex;gap:10px;align-items:center;
+  margin:13px 0;font-size:13px;font-weight:800;
+}
+.switch-row input{width:18px;height:18px;accent-color:var(--primary)}
+.switch-row input:disabled{opacity:.5}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{
+  border-radius:12px;background:#f0f7f8;
+  padding:13px;text-align:center;
+}
+.metric b{display:block;font-size:23px;color:var(--primary)}
+.metric span{font-size:11px;color:#526b77}
+.teacher-question{
+  padding:16px 0;border-top:1px solid #e6ecef;
+}
+.teacher-question:first-child{border-top:0}
+.teacher-question h4{font-size:14px;margin:2px 0 9px}
+.teacher-question p{font-size:12px;line-height:1.85;margin:7px 0}
+.teacher-option{
+  margin:5px 0;padding:7px 10px;
+  border:1px solid #e7edf0;border-radius:9px;
+  background:#fbfdfe;font-size:12px;
+}
+.teacher-option.correct{
+  color:#07654c;background:#e4f7ed;
+  border-color:#a9ddc4;font-weight:800;
+}
+.teacher-warning{
+  background:#fff5e3;color:#825d20;
+  border-radius:11px;padding:13px;
+  font-size:11px;line-height:1.85;
+}
+.teacher-muted{color:var(--muted);font-size:11px;line-height:1.8}
+.teacher-tool-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.teacher-tool-row button{flex:1}
+@media(max-width:650px){
+  .shell{padding:13px 13px 20px}
+  .topbar{margin-bottom:16px}
+  .brand-name{font-size:15px}
+  .brand-sub{font-size:10px}
+  .teacher-button{padding:9px 11px;font-size:12px}
+  .hero{padding:25px 22px;border-radius:21px}
+  .hero h1{font-size:27px}
+  .hero-art span{width:47px;height:47px;font-size:21px}
+  .stats{gap:6px}
+  .stat{padding:12px 4px}
+  .stat strong{font-size:16px}
+  .stat small{font-size:10px}
+  .start-grid{grid-template-columns:1fr;gap:13px}
+  .card{padding:19px;border-radius:19px}
+  .question-card{padding:19px}
+  .question-card h2{font-size:18px}
+  .options{grid-template-columns:1fr;gap:9px}
+  .option{min-height:58px}
+  .actions button{width:100%}
+  .teacher-body{padding:13px}
+  .teacher-section{padding:15px}
+  .result-score{font-size:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">🔬</div>
+      <div>
+        <div class="brand-name">KRK Science Lab</div>
+        <div class="brand-sub">ห้องเรียนวิทยาศาสตร์ • ชั้นประถมศึกษาปีที่ 5</div>
+      </div>
+    </div>
+    <button class="teacher-button" id="teacherButton" type="button">⚙️ โหมดครู</button>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">✨ INTERACTIVE SCIENCE CHALLENGE</span>
+          <h1>ภารกิจนักวิทย์ตัวน้อย<br>การเปลี่ยนสถานะของสสาร</h1>
+          <p>สังเกตหลักฐาน คิดวิเคราะห์ และไขปริศนาว่าสสารเปลี่ยนสถานะได้อย่างไรเมื่อได้รับหรือสูญเสียพลังงานความร้อน</p>
+          <div class="hero-art" aria-hidden="true">
+            <span>🧊</span><b>→</b>
+            <span>💧</span><b>→</b>
+            <span>☁️</span><span>🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>ป.5</strong><small>ระดับชั้น</small></div>
+        <div class="stat"><strong>5 ข้อ</strong><small>คำถาม</small></div>
+        <div class="stat"><strong>10 นาที</strong><small>เวลาทำ</small></div>
+        <div class="stat"><strong>ปานกลาง</strong><small>ความยาก</small></div>
+      </div>
+
+      <div class="start-grid">
+        <div class="card">
+          <div class="section-label">🚀 START YOUR MISSION</div>
+          <h2>พร้อมเริ่มภารกิจหรือยัง?</h2>
+          <p class="description">กรอกเลขที่ของนักเรียนเพื่อรับชุดสถานการณ์เฉพาะของตนเอง</p>
+
+          <form id="startForm" novalidate>
+            <label class="input-label" for="studentSeat">เลขที่นักเรียน (1–30)</label>
+            <input id="studentSeat" class="seat-input" type="number"
+              min="1" max="30" step="1" inputmode="numeric"
+              placeholder="เช่น 12" required autocomplete="off">
+            <p id="startError" class="error" role="alert"></p>
+            <button class="primary-btn full" type="submit">เริ่มทำกิจกรรม →</button>
+          </form>
+          <div class="tip">
+            💡 เลขที่แต่ละคนจะได้รับสถานการณ์และตัวเลขที่แตกต่างกัน โดยยังวัดความรู้ทั้ง 5 เรื่องเหมือนกัน
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">📚 LEARNING OBJECTIVE</div>
+          <h2>สิ่งที่จะได้เรียนรู้</h2>
+          <p class="description">อธิบายการเปลี่ยนสถานะของสสารจากหลักฐานเชิงประจักษ์ได้อย่างมีเหตุผล</p>
+          <ul class="info-list">
+            <li><b>01</b> 🧊 การหลอมเหลว</li>
+            <li><b>02</b> ♨️ การกลายเป็นไอ</li>
+            <li><b>03</b> 💧 การควบแน่น</li>
+            <li><b>04</b> ❄️ การแข็งตัว</li>
+            <li><b>05</b> ☁️ การระเหิด</li>
+          </ul>
+          <p style="margin:16px 0 0">
+            <span class="pill">✓ โหมดฝึกซ้อม</span>
+            <span class="pill">✓ มีคำอธิบาย</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen" hidden>
+      <div class="quiz-status">
+        <div>
+          <div class="status-title">ผู้ปฏิบัติภารกิจ</div>
+          <div class="status-value">นักเรียนเลขที่ <span id="activeSeat">-</span></div>
+        </div>
+        <div>
+          <div class="status-title">เวลาคงเหลือ</div>
+          <div id="timerBox" class="timer" role="timer">
+            ⏱ <span id="timerText">10:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-text">
+          <span>ความคืบหน้าภารกิจ</span>
+          <span id="progressText">0 / 5 ข้อ</span>
+        </div>
+        <div id="progressBar" class="progress-track"
+          role="progressbar" aria-label="ความคืบหน้า"
+          aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="card question-card">
+        <div class="question-top">
+          <span id="questionBadge" class="question-number">ข้อที่ 1 / 5</span>
+          <span id="questionTopic" class="question-topic">การเปลี่ยนสถานะของสสาร</span>
+        </div>
+
+        <h2 id="questionPrompt">
+          การเปลี่ยนสถานะใดสอดคล้องกับหลักฐานที่สังเกตได้มากที่สุด?
+        </h2>
+
+        <p id="scenarioText" class="scenario"></p>
+
+        <div class="evidence">
+          <strong>🔍 หลักฐานเชิงประจักษ์</strong>
+          <p id="evidenceText"></p>
+        </div>
+
+        <p class="choice-label">เลือกคำตอบที่ถูกต้องที่สุด 1 ข้อ</p>
+        <div id="optionsList" class="options" role="group" aria-label="ตัวเลือกคำตอบ"></div>
+
+        <div id="feedbackBox" class="feedback" hidden role="status" aria-live="polite">
+          <strong>🧠 วิเคราะห์จากหลักฐาน</strong>
+          <p id="feedbackText"></p>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="primary-btn" id="confirmAnswer" disabled>
+            ยืนยันคำตอบข้อนี้
+          </button>
+          <button type="button" class="primary-btn" id="nextQuestion" hidden>
+            ข้อถัดไป →
+          </button>
+        </div>
+      </div>
+
+      <p class="caption">
+        คำตอบจะถูกบันทึกเมื่อกดยืนยัน • อ่านเหตุผลหลังตอบ • ดูคะแนนและเฉลยทั้งหมดเมื่อส่งงาน
+      </p>
+    </section>
+
+    <section id="resultScreen" class="screen" hidden>
+      <div class="result-hero">
+        <div style="font-size:38px" aria-hidden="true">🏆</div>
+        <h2 id="resultTitle">ภารกิจสำเร็จ!</h2>
+        <div class="result-score" id="resultScore">0 / 5</div>
+        <p id="resultPercent">0%</p>
+        <p id="resultMessage"></p>
+      </div>
+
+      <div class="result-actions">
+        <button type="button" class="primary-btn" id="retryButton">🔄 ฝึกซ้อมอีกครั้ง</button>
+        <button type="button" class="outline-btn" id="homeButton">เปลี่ยนเลขที่ / กลับหน้าแรก</button>
+      </div>
+
+      <div class="card" style="margin-bottom:15px">
+        <div class="section-label">📝 ANSWER REVIEW</div>
+        <h2>เฉลยและอธิบายเหตุผลทั้ง 5 ข้อ</h2>
+        <p class="description">ตรวจสอบคำตอบของตนเอง เปรียบเทียบกับหลักฐาน และเรียนรู้จากข้อที่ตอบผิด</p>
+      </div>
+
+      <div id="reviewList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>KRK SCIENCE LAB</strong><br>
+    วิทยาศาสตร์พื้นฐาน • การเปลี่ยนสถานะของสสาร • ป.5<br>
+    ผู้สร้าง: Sangmanee | โรงเรียน: KRK<br>
+    <span id="seedFooter">โหมดฝึกซ้อม • Seed คงที่ • ทำซ้ำได้</span>
+  </footer>
+</div>
+
+<!-- TEACHER PANEL -->
+<div id="teacherOverlay" class="backdrop" hidden>
+  <aside id="teacherPanel" class="teacher-panel"
+    role="dialog" aria-modal="true" aria-labelledby="teacherTitle">
+    <div class="teacher-head">
+      <div>
+        <h2 id="teacherTitle">⚙️ Teacher Dashboard</h2>
+        <small>ตรวจสอบโจทย์ • เฉลย • Seed • ความซ้ำ</small>
+      </div>
+      <button type="button" id="closeTeacher" class="close-btn" aria-label="ปิดโหมดครู">×</button>
+    </div>
+
+    <div class="teacher-body">
+      <div class="teacher-section">
+        <h3>🔢 ตรวจสอบชุดโจทย์รายเลขที่</h3>
+        <p class="teacher-muted">กรอกเลขที่ 1–30 เพื่อดูโจทย์จริง ตัวเลือกที่สลับแล้ว เฉลย และเหตุผล</p>
+
+        <label class="input-label" for="teacherSeat">เลขที่ที่ต้องการตรวจสอบ</label>
+        <div class="teacher-input-row">
+          <input id="teacherSeat" class="seat-input" type="number"
+            min="1" max="30" step="1" value="1" inputmode="numeric">
+          <button type="button" class="primary-btn" id="previewButton">ดูโจทย์</button>
+        </div>
+        <p id="teacherError" class="error" role="alert"></p>
+
+        <label class="switch-row">
+          <input id="seedToggle" type="checkbox" checked>
+          ใช้ Seed คงที่ (แนะนำ)
+        </label>
+        <p id="seedDescription" class="teacher-muted"></p>
+        <div class="teacher-warning">
+          เมื่อเปิด Seed เลขที่เดิมจะได้รับชุดโจทย์และลำดับตัวเลือกเดิมทุกครั้ง หากปิด Seed ระบบจะใช้ Seed จากเวลาเริ่มเซสชัน ซึ่งยังเป็นการสุ่มแบบ Deterministic PRNG ไม่ใช้ Math.random() แบบไร้ Seed
+        </div>
+        <div class="teacher-tool-row">
+          <button id="toggleAnswers" type="button" class="outline-btn">🙈 ซ่อนเฉลย</button>
+          <button id="copyAnswers" type="button" class="outline-btn">📋 คัดลอกเฉลย</button>
+        </div>
+        <p id="copyStatus" class="teacher-muted" role="status"></p>
+      </div>
+
+      <div class="teacher-section">
+        <h3>📊 วิเคราะห์ความซ้ำของโจทย์</h3>
+        <div class="metric-grid">
+          <div class="metric">
+            <b id="exactDuplicateRate">0.0%</b>
+            <span>อัตราชุดซ้ำทั้ง 5 ข้อ</span>
+          </div>
+          <div class="metric">
+            <b id="partialDuplicateRate">0.0%</b>
+            <span>อัตราสถานการณ์ซ้ำรายข้อ</span>
+          </div>
+          <div class="metric">
+            <b id="uniqueSets">30</b>
+            <span>ชุดโจทย์ที่ไม่ซ้ำทั้งชุด</span>
+          </div>
+          <div class="metric">
+            <b id="pairsChecked">435</b>
+            <span>คู่ชุดที่นำมาเปรียบเทียบ</span>
+          </div>
+        </div>
+        <p id="duplicateDetails" class="teacher-muted"></p>
+        <p class="teacher-muted">
+          เปรียบเทียบชุดของเลขที่ 1–30 แบบจับคู่ทุกคู่ โดยตรวจข้อความสถานการณ์ หลักฐาน และตัวเลขจริงของข้อที่วัดทักษะเดียวกัน ไม่ถือว่าการสลับ ก–ง เพียงอย่างเดียวเป็นโจทย์ใหม่
+        </p>
+      </div>
+
+      <div class="teacher-section">
+        <h3 id="teacherPreviewTitle">📋 ชุดโจทย์เลขที่ 1</h3>
+        <div id="teacherQuestionList"></div>
+      </div>
+
+      <div class="teacher-warning">
+        ⚠️ <strong>หมายเหตุสำหรับครู:</strong> เว็บแอปแบบ Client-Side ไม่สามารถซ่อนเฉลยที่อยู่ในโค้ดเบราว์เซอร์ได้ 100% โปรดตรวจสอบโจทย์และเฉลยก่อนนำไปใช้จริง โดยเฉพาะเมื่อนำไปใช้ประเมินผลอย่างเป็นทางการ
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   KRK SCIENCE LAB
+   Grade 5 • States of Matter • 5 Questions
+   Strategy D: Hybrid Variation
+   Reproducible Seed + Mulberry32
+   ============================================================ */
+
+const BASE_SEED = 2569;
+const TOTAL_QUESTIONS = 5;
+const TIME_LIMIT = 600;
+const LETTERS = ["ก", "ข", "ค", "ง"];
+
+const SESSION_SALT =
+  (Date.now() ^ (Date.now() >>> 8) ^ 0x51f15e) >>> 0;
+
+let seedEnabled = true;
+let teacherAnswersVisible = true;
+let lastTeacherSet = null;
+let lastTeacherSeat = 1;
+
+const state = {
+  seat: null,
+  questions: [],
+  current: 0,
+  selected: [],
+  confirmed: [],
+  deadline: 0,
+  remaining: TIME_LIMIT,
+  interval: null,
+  submitted: false
+};
+
+/* ---------- Safe DOM helpers ---------- */
+
+function byId(id) {
+  return document.getElementById(id);
+}
+
+function makeElement(tag, className, value) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (value !== undefined && value !== null) {
+    node.textContent = String(value);
+  }
+  return node;
+}
+
+function validSeat(value) {
+  const text = String(value).trim();
+  if (!/^\d+$/.test(text)) return null;
+
+  const number = Number(text);
+  if (!Number.isInteger(number) || number < 1 || number > 30) {
+    return null;
+  }
+  return number;
+}
+
+function pick(rng, array) {
+  return array[Math.floor(rng() * array.length)];
+}
+
+function fixedPercent(numerator, denominator) {
+  if (!denominator) return "0.0%";
+  return (100 * numerator / denominator).toFixed(1) + "%";
+}
+
+/* ---------- Deterministic PRNG ---------- */
+
+function mulberry32(initialSeed) {
+  let a = initialSeed >>> 0;
+
+  return function() {
+    a = (a + 0x6D2B79F5) >>> 0;
+
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function seedFor(seat, questionNumber) {
+  const base = seedEnabled
+    ? BASE_SEED
+    : (BASE_SEED ^ SESSION_SALT) >>> 0;
+
+  return (
+    Math.imul(seat, 0x9E3779B1) ^
+    Math.imul(questionNumber + 1, 0x85EBCA6B) ^
+    Math.imul(base, 0xC2B2AE35)
+  ) >>> 0;
+}
+
+function deterministicShuffle(items, rng) {
+  const copy = items.slice();
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    const temp = copy[i];
+    copy[i] = copy[j];
+    copy[j] = temp;
+  }
+  return copy;
+}
+
+/* ============================================================
+   QUESTION BANK
+   Every template contains:
+   - scientifically grounded context
+   - variable numerical data
+   - direct empirical evidence
+   - four misconception-based choices
+   - a factual explanation
+   ============================================================ */
+
+const QUESTION_BANK = [
+
+  /* Q1: Melting */
+  {
+    id: "melting",
+    topic: "การหลอมเหลว",
+    category: "ของแข็ง → ของเหลว",
+
+    choices: [
+      "การหลอมเหลว (ของแข็ง → ของเหลว)",
+      "การแข็งตัว (ของเหลว → ของแข็ง)",
+      "การควบแน่น (แก๊ส → ของเหลว)",
+      "การระเหิด (ของแข็ง → แก๊ส)"
+    ],
+
+    build(rng) {
+      const context = pick(rng, [
+        "ในห้องเรียนวิทยาศาสตร์ นักเรียนวางก้อนน้ำแข็งบนจานสเตนเลส",
+        "บริเวณโรงอาหาร นักเรียนวางก้อนน้ำแข็งไว้ในถาดรอง",
+        "ในกิจกรรมทดลอง นักเรียนวางก้อนน้ำแข็งในบีกเกอร์",
+        "ที่มุมเครื่องดื่ม นักเรียนใส่ก้อนน้ำแข็งลงในแก้วเปล่า",
+        "ขณะจัดเตรียมอุปกรณ์ทดลอง นักเรียนวางก้อนน้ำแข็งบนจานแก้ว",
+        "ในกิจกรรมสังเกตสสาร นักเรียนใส่ก้อนน้ำแข็งในถ้วยใส"
+      ]);
+
+      const mass = pick(rng, [30, 40, 50, 60, 70, 80]);
+      const startTemp = -pick(rng, [2, 3, 4, 5, 6, 7, 8]);
+      const roomTemp = pick(rng, [26, 27, 28, 29, 30, 31]);
+
+      return {
+        situation:
+          context + " มวล " + mass + " g มีอุณหภูมิเริ่มต้น " +
+          startTemp + " °C โดยอุณหภูมิอากาศในห้องเท่ากับ " +
+          roomTemp + " °C",
+
+        evidence:
+          "เมื่อเวลาผ่านไป อุณหภูมิของน้ำแข็งเพิ่มขึ้นจนถึงประมาณ 0 °C " +
+          "พบว่าน้ำแข็งมีขนาดเล็กลง และมีน้ำเหลวเกิดขึ้นจากก้อนน้ำแข็ง",
+
+        explanation:
+          "หลักฐานแสดงว่าน้ำแข็งซึ่งเป็นของแข็งได้รับพลังงานความร้อน " +
+          "และเปลี่ยนเป็นน้ำในสถานะของเหลว เรียกว่า “การหลอมเหลว” " +
+          "ที่ความดันบรรยากาศทั่วไป น้ำแข็งเริ่มหลอมเหลวได้ที่ประมาณ 0 °C " +
+          "โดยอาจมีทั้งน้ำแข็งและน้ำเหลวอยู่พร้อมกันระหว่างการเปลี่ยนสถานะ"
+      };
+    }
+  },
+
+  /* Q2: Vaporization */
+  {
+    id: "vaporization",
+    topic: "การกลายเป็นไอ",
+    category: "ของเหลว → แก๊ส",
+
+    choices: [
+      "การกลายเป็นไอ (ของเหลว → แก๊ส)",
+      "การควบแน่น (แก๊ส → ของเหลว)",
+      "การหลอมเหลว (ของแข็ง → ของเหลว)",
+      "การแข็งตัว (ของเหลว → ของแข็ง)"
+    ],
+
+    build(rng) {
+      const vessel = pick(rng, [
+        "บีกเกอร์ทนความร้อน",
+        "หม้อสเตนเลส",
+        "ภาชนะสำหรับต้มน้ำ",
+        "กาต้มน้ำแบบเปิดฝา",
+        "หม้อทดลองขนาดเล็ก",
+        "บีกเกอร์แก้วสำหรับการทดลอง"
+      ]);
+
+      const mass = pick(rng, [120, 140, 160, 180, 200, 240]);
+      const loss = pick(rng, [3, 4, 5, 6, 7, 8]);
+      const startTemp = pick(rng, [24, 25, 26, 27, 28, 29]);
+      const duration = pick(rng, [120, 150, 180, 210, 240]);
+
+      return {
+        situation:
+          "ครูให้นักเรียนสังเกตการต้มน้ำบริสุทธิ์มวล " +
+          mass + " g ใน" + vessel +
+          " ที่ความดันอากาศประมาณ 101 kPa " +
+          "โดยน้ำมีอุณหภูมิเริ่มต้น " +
+          startTemp + " °C และได้รับความร้อนอย่างต่อเนื่อง",
+
+        evidence:
+          "เมื่อน้ำมีอุณหภูมิประมาณ 100 °C พบฟองไอน้ำเกิดขึ้นภายในน้ำอย่างต่อเนื่อง " +
+          "หลังจากเดือดนาน " + duration +
+          " s มวลน้ำที่เหลือในภาชนะเปิดเท่ากับ " +
+          (mass - loss) +
+          " g โดยไม่มีน้ำหกหรือกระเด็นออกจากภาชนะ",
+
+        explanation:
+          "น้ำได้รับพลังงานความร้อนและเปลี่ยนจากของเหลวเป็นแก๊ส " +
+          "เรียกว่า “การกลายเป็นไอ” ในกรณีนี้เป็นการเดือด " +
+          "ซึ่งมีฟองไอเกิดขึ้นภายในของเหลว " +
+          "ที่ความดันประมาณ 101 kPa น้ำบริสุทธิ์เดือดใกล้ 100 °C " +
+          "มวลน้ำในภาชนะเปิดลดลงเพราะน้ำบางส่วนออกสู่สิ่งแวดล้อมในรูปไอน้ำ " +
+          "ไม่ได้หมายความว่าสสารสูญหายไป"
+      };
+    }
+  },
+
+  /* Q3: Condensation */
+  {
+    id: "condensation",
+    topic: "การควบแน่น",
+    category: "แก๊ส → ของเหลว",
+
+    choices: [
+      "การควบแน่น (แก๊ส → ของเหลว)",
+      "การกลายเป็นไอ (ของเหลว → แก๊ส)",
+      "การแข็งตัว (ของเหลว → ของแข็ง)",
+      "การระเหิด (ของแข็ง → แก๊ส)"
+    ],
+
+    build(rng) {
+      const object = pick(rng, [
+        "แก้วใส่น้ำเย็น",
+        "ขวดน้ำเย็นที่ปิดฝาสนิท",
+        "กระป๋องเครื่องดื่มเย็น",
+        "แก้วสเตนเลสใส่น้ำเย็น",
+        "ภาชนะใส่น้ำแข็งที่ไม่รั่ว",
+        "ขวดแก้วใส่น้ำเย็นที่ปิดฝา"
+      ]);
+
+      const surfaceTemp = pick(rng, [4, 5, 6, 7, 8, 9, 10]);
+      const airTemp = pick(rng, [27, 28, 29, 30, 31]);
+      const humidity = pick(rng, [70, 75, 80, 85]);
+      const duration = pick(rng, [120, 150, 180, 210, 240]);
+
+      return {
+        situation:
+          "นักเรียนนำ" + object +
+          " ซึ่งมีอุณหภูมิผิวด้านนอกประมาณ " +
+          surfaceTemp + " °C มาวางในห้องที่มีอุณหภูมิอากาศ " +
+          airTemp + " °C และความชื้นสัมพัทธ์ประมาณ " +
+          humidity + "%",
+
+        evidence:
+          "ก่อนเริ่มทดลองได้เช็ดผิวภายนอกจนแห้ง " +
+          "เมื่อผ่านไป " + duration +
+          " s พบหยดน้ำเล็ก ๆ เกิดขึ้นที่ผิวด้านนอกของภาชนะ " +
+          "ทั้งที่ไม่มีน้ำรั่วออกมาจากภายใน",
+
+        explanation:
+          "ไอน้ำซึ่งเป็นแก๊สที่มีอยู่ในอากาศสัมผัสกับผิวภาชนะที่เย็น " +
+          "เมื่ออากาศใกล้ผิวเย็นลงต่ำกว่าจุดน้ำค้าง " +
+          "ไอน้ำบางส่วนจึงเปลี่ยนเป็นหยดน้ำเหลว เรียกว่า “การควบแน่น” " +
+          "หยดน้ำด้านนอกไม่ได้เกิดจากน้ำซึมผ่านผนังภาชนะ"
+      };
+    }
+  },
+
+  /* Q4: Freezing */
+  {
+    id: "freezing",
+    topic: "การแข็งตัว",
+    category: "ของเหลว → ของแข็ง",
+
+    choices: [
+      "การแข็งตัว (ของเหลว → ของแข็ง)",
+      "การหลอมเหลว (ของแข็ง → ของเหลว)",
+      "การควบแน่น (แก๊ส → ของเหลว)",
+      "การกลายเป็นไอ (ของเหลว → แก๊ส)"
+    ],
+
+    build(rng) {
+      const context = pick(rng, [
+        "น้ำในถาดทำน้ำแข็ง",
+        "น้ำในแม่พิมพ์ซิลิโคน",
+        "น้ำในถ้วยทดลองที่เผื่อช่องว่าง",
+        "น้ำในภาชนะขนาดเล็ก",
+        "น้ำในกล่องสำหรับทำน้ำแข็ง",
+        "น้ำในแม่พิมพ์รูปทรงเรขาคณิต"
+      ]);
+
+      const mass = pick(rng, [60, 70, 80, 90, 100, 120, 150]);
+      const startTemp = pick(rng, [12, 15, 18, 20, 22, 24]);
+      const endTemp = -pick(rng, [4, 5, 6, 7, 8]);
+      const duration = pick(rng, [10800, 12600, 14400, 16200, 18000]);
+
+      return {
+        situation:
+          "นักเรียนสังเกต" + context +
+          " มวล " + mass + " g ที่อุณหภูมิเริ่มต้น " +
+          startTemp +
+          " °C ซึ่งครูนำไปใส่ในช่องแช่แข็งที่มีอุณหภูมิอากาศประมาณ -18 °C",
+
+        evidence:
+          "หลังผ่านไป " + duration +
+          " s พบว่าน้ำเปลี่ยนเป็นก้อนแข็ง " +
+          "และวัดอุณหภูมิของก้อนน้ำแข็งได้ประมาณ " +
+          endTemp + " °C",
+
+        explanation:
+          "น้ำในสถานะของเหลวสูญเสียพลังงานความร้อนให้กับบริเวณที่เย็นกว่า " +
+          "จึงเปลี่ยนเป็นน้ำแข็งซึ่งเป็นของแข็ง เรียกว่า “การแข็งตัว” " +
+          "ที่ความดันบรรยากาศทั่วไป น้ำบริสุทธิ์แข็งตัวที่ประมาณ 0 °C " +
+          "และเมื่อแข็งตัวเสร็จแล้ว น้ำแข็งสามารถเย็นลงต่ำกว่า 0 °C ได้อีก"
+      };
+    }
+  },
+
+  /* Q5: Sublimation */
+  {
+    id: "sublimation",
+    topic: "การระเหิด",
+    category: "ของแข็ง → แก๊ส",
+
+    choices: [
+      "การระเหิด (ของแข็ง → แก๊ส)",
+      "การหลอมเหลว (ของแข็ง → ของเหลว)",
+      "การกลายเป็นไอ (ของเหลว → แก๊ส)",
+      "การระเหิดกลับ (แก๊ส → ของแข็ง)"
+    ],
+
+    build(rng) {
+      const context = pick(rng, [
+        "ครูสาธิตน้ำแข็งแห้งบนถาดเปิดโล่ง",
+        "นักเรียนดูวิดีโอการทดลองน้ำแข็งแห้งของครู",
+        "ครูวางน้ำแข็งแห้งบนภาชนะเปิดในห้องปฏิบัติการที่ระบายอากาศดี",
+        "ครูใช้คีมย้ายน้ำแข็งแห้งลงบนถาดสำหรับสาธิต",
+        "นักเรียนสังเกตบันทึกการทดลองน้ำแข็งแห้งในภาชนะเปิด",
+        "ครูสาธิตการเปลี่ยนสถานะของคาร์บอนไดออกไซด์แข็ง"
+      ]);
+
+      const mass = pick(rng, [30, 35, 40, 45, 50, 55, 60]);
+      const loss = pick(rng, [5, 6, 7, 8, 9, 10, 11, 12]);
+      const airTemp = pick(rng, [26, 27, 28, 29, 30, 31]);
+      const duration = pick(rng, [360, 420, 480, 540, 600, 720]);
+
+      return {
+        situation:
+          context +
+          " โดยใช้ก้อนคาร์บอนไดออกไซด์แข็ง (CO₂) " +
+          "มวลเริ่มต้น " + mass +
+          " g ที่ความดันอากาศประมาณ 101 kPa " +
+          "และอุณหภูมิอากาศโดยรอบ " + airTemp + " °C",
+
+        evidence:
+          "หลังผ่านไป " + duration +
+          " s พบว่ามวลก้อน CO₂ แข็งเหลือ " +
+          (mass - loss) +
+          " g ก้อนมีขนาดเล็กลง " +
+          "มีก๊าซ CO₂ ออกจากก้อน และไม่พบ CO₂ ในสถานะของเหลว",
+
+        explanation:
+          "น้ำแข็งแห้งคือคาร์บอนไดออกไซด์ในสถานะของแข็ง " +
+          "ที่ความดันบรรยากาศประมาณ 101 kPa " +
+          "เมื่อได้รับพลังงานความร้อนจะเปลี่ยนจากของแข็งเป็นแก๊สโดยตรง " +
+          "เรียกว่า “การระเหิด” " +
+          "ไม่ใช่การหลอมเหลวเพราะไม่ผ่านสถานะของเหลว " +
+          "หากเห็นหมอกสีขาว หมอกนั้นส่วนใหญ่เป็นหยดน้ำเล็ก ๆ " +
+          "ที่ควบแน่นจากอากาศ ไม่ใช่สีของแก๊ส CO₂"
+      };
+    }
+  }
+];
+
+/* ---------- Question generation ---------- */
+
+function buildQuestion(seat, index) {
+  const blueprint = QUESTION_BANK[index];
+  const rng = mulberry32(seedFor(seat, index));
+  const generated = blueprint.build(rng);
+
+  const choices = blueprint.choices.map(function(text, i) {
+    return {
+      id: blueprint.id + "_" + i,
+      text: text,
+      correct: i === 0
+    };
+  });
+
+  const shuffled = deterministicShuffle(choices, rng);
+  const correctIndex = shuffled.findIndex(function(choice) {
+    return choice.correct;
+  });
+
+  return {
+    id: blueprint.id,
+    topic: blueprint.topic,
+    category: blueprint.category,
+    prompt:
+      "จากสถานการณ์และหลักฐานที่กำหนด " +
+      "การเปลี่ยนสถานะของสสารข้อใดสอดคล้องกับสิ่งที่สังเกตได้มากที่สุด?",
+    situation: generated.situation,
+    evidence: generated.evidence,
+    explanation: generated.explanation,
+    choices: shuffled,
+    correctIndex: correctIndex,
+    signature: generated.situation + "|" + generated.evidence
+  };
+}
+
+function buildSet(seat) {
+  return QUESTION_BANK.map(function(_, i) {
+    return buildQuestion(seat, i);
+  });
+}
+
+/* ---------- Student flow ---------- */
+
+function showScreen(screenId) {
+  ["homeScreen", "quizScreen", "resultScreen"].forEach(function(id) {
+    byId(id).hidden = id !== screenId;
+  });
+  window.scrollTo(0, 0);
+}
+
+function clearClock() {
+  if (state.interval !== null) {
+    clearInterval(state.interval);
+    state.interval = null;
+  }
+}
+
+function startQuiz(seat) {
+  if (seat === null) {
+    byId("startError").textContent =
+      "กรุณากรอกเลขที่เป็นจำนวนเต็มตั้งแต่ 1 ถึง 30";
+    return;
+  }
+
+  clearClock();
+
+  state.seat = seat;
+  state.questions = buildSet(seat);
+  state.current = 0;
+  state.selected = Array(TOTAL_QUESTIONS).fill(null);
+  state.confirmed = Array(TOTAL_QUESTIONS).fill(false);
+  state.remaining = TIME_LIMIT;
+  state.deadline = Date.now() + TIME_LIMIT * 1000;
+  state.submitted = false;
+
+  byId("activeSeat").textContent = String(seat);
+  byId("studentSeat").value = String(seat);
+  byId("startError").textContent = "";
+
+  showScreen("quizScreen");
+  renderQuestion();
+  updateClock();
+
+  state.interval = setInterval(updateClock, 250);
+}
+
+function updateClock() {
+  if (state.submitted || state.seat === null) return;
+
+  const remaining = Math.max(
+    0,
+    Math.ceil((state.deadline - Date.now()) / 1000)
+  );
+
+  state.remaining = remaining;
+
+  const minutes = Math.floor(remaining / 60);
+  const seconds = remaining % 60;
+
+  byId("timerText").textContent =
+    String(minutes).padStart(2, "0") + ":" +
+    String(seconds).padStart(2, "0");
+
+  const timerBox = byId("timerBox");
+  timerBox.classList.toggle("warning", remaining <= 120 && remaining > 60);
+  timerBox.classList.toggle("danger", remaining <= 60);
+
+  if (remaining === 0) {
+    finishQuiz(true);
+  }
+}
+
+function renderQuestion() {
+  if (state.submitted) return;
+
+  const index = state.current;
+  const question = state.questions[index];
+  const confirmed = state.confirmed[index];
+
+  byId("questionBadge").textContent =
+    "ข้อที่ " + (index + 1) + " / " + TOTAL_QUESTIONS;
+
+  byId("questionTopic").textContent =
+    "ภารกิจที่ " + (index + 1) + " • วิเคราะห์หลักฐาน";
+
+  byId("questionPrompt").textContent = question.prompt;
+  byId("scenarioText").textContent = question.situation;
+  byId("evidenceText").textContent = question.evidence;
+
+  const list = byId("optionsList");
+  list.replaceChildren();
+
+  question.choices.forEach(function(choice, optionIndex) {
+    const button = makeElement("button", "option");
+    button.type = "button";
+    button.disabled = confirmed;
+    button.setAttribute("aria-pressed", "false");
+
+    const letter = makeElement(
+      "span", "option-letter", LETTERS[optionIndex]
+    );
+    letter.setAttribute("aria-hidden", "true");
+
+    const text = makeElement("span", "", choice.text);
+
+    button.append(letter, text);
+    button.addEventListener("click", function() {
+      chooseAnswer(optionIndex);
+    });
+
+    list.appendChild(button);
+  });
+
+  syncChoices();
+
+  const completed = state.confirmed.filter(Boolean).length;
+
+  byId("progressText").textContent =
+    completed + " / " + TOTAL_QUESTIONS + " ข้อ";
+
+  byId("progressFill").style.width =
+    (completed / TOTAL_QUESTIONS * 100) + "%";
+
+  byId("progressBar").setAttribute(
+    "aria-valuenow", String(completed)
+  );
+
+  byId("confirmAnswer").hidden = confirmed;
+  byId("nextQuestion").hidden = !confirmed;
+
+  if (confirmed) {
+    byId("feedbackBox").hidden = false;
+    byId("feedbackText").textContent = question.explanation;
+
+    byId("nextQuestion").textContent =
+      index === TOTAL_QUESTIONS - 1
+        ? "ตรวจ/ส่งคำตอบ ✓"
+        : "ข้อถัดไป →";
+  } else {
+    byId("feedbackBox").hidden = true;
+    byId("feedbackText").textContent = "";
+  }
+}
+
+function syncChoices() {
+  const selectedIndex = state.selected[state.current];
+  const buttons = byId("optionsList").querySelectorAll(".option");
+
+  buttons.forEach(function(button, i) {
+    const selected = i === selectedIndex;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  byId("confirmAnswer").disabled =
+    selectedIndex === null || state.confirmed[state.current];
+}
+
+function chooseAnswer(optionIndex) {
+  if (state.confirmed[state.current] || state.submitted) return;
+
+  state.selected[state.current] = optionIndex;
+  syncChoices();
+}
+
+function confirmCurrentAnswer() {
+  if (state.submitted || state.confirmed[state.current]) return;
+  if (state.selected[state.current] === null) return;
+
+  state.confirmed[state.current] = true;
+  renderQuestion();
+}
+
+function nextStep() {
+  if (state.submitted || !state.confirmed[state.current]) return;
+
+  if (state.current === TOTAL_QUESTIONS - 1) {
+    finishQuiz(false);
+    return;
+  }
+
+  state.current++;
+  renderQuestion();
+
+  byId("questionBadge").scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+}
+
+function isAnswerCorrect(index) {
+  if (!state.confirmed[index]) return false;
+
+  const question = state.questions[index];
+  const selected = state.selected[index];
+
+  return selected === question.correctIndex;
+}
+
+function finishQuiz(expired) {
+  if (state.submitted || state.seat === null) return;
+
+  state.submitted = true;
+  clearClock();
+
+  let score = 0;
+
+  for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+    if (isAnswerCorrect(i)) score++;
+  }
+
+  renderResult(score, expired);
+  showScreen("resultScreen");
+}
+
+function renderResult(score, expired) {
+  const percent = score / TOTAL_QUESTIONS * 100;
+
+  byId("resultTitle").textContent =
+    expired ? "⏱ หมดเวลาทำกิจกรรม" : "🎉 ภารกิจเสร็จสิ้น!";
+
+  byId("resultScore").textContent =
+    score + " / " + TOTAL_QUESTIONS;
+
+  byId("resultPercent").textContent =
+    "คะแนน " + percent.toFixed(0) + "% • เลขที่ " + state.seat;
+
+  let message;
+
+  if (score === 5) {
+    message = "ยอดเยี่ยม! เข้าใจการเปลี่ยนสถานะของสสารครบทั้ง 5 รูปแบบ";
+  } else if (score >= 3) {
+    message = "ทำได้ดี! อ่านคำอธิบายเพิ่มเติมเพื่อพัฒนาความเข้าใจ";
+  } else {
+    message = "การเรียนรู้เกิดจากการลองผิดลองถูก ทบทวนหลักฐานแล้วฝึกอีกครั้งได้";
+  }
+
+  if (expired) {
+    message += " • ข้อที่ยังไม่ได้ยืนยันนับเป็นข้อไม่ได้ตอบ";
+  }
+
+  byId("resultMessage").textContent = message;
+
+  const review = byId("reviewList");
+  review.replaceChildren();
+
+  state.questions.forEach(function(question, index) {
+    const confirmed = state.confirmed[index];
+    const correct = isAnswerCorrect(index);
+    const selectedIndex = state.selected[index];
+
+    const item = makeElement("article", "review-item");
+    const head = makeElement("div", "review-head");
+
+    const number = makeElement(
+      "strong", "", "ข้อ " + (index + 1) + " • " + question.topic
+    );
+
+    const status = makeElement(
+      "span",
+      !confirmed
+        ? "tag-empty"
+        : correct ? "tag-correct" : "tag-wrong",
+      !confirmed
+        ? "ไม่ได้ส่ง"
+        : correct ? "✓ ถูกต้อง" : "✕ ควรทบทวน"
+    );
+
+    head.append(number, status);
+    item.appendChild(head);
+
+    item.appendChild(
+      makeElement("h3", "", question.prompt)
+    );
+
+    item.appendChild(
+      makeElement("p", "", question.situation)
+    );
+
+    item.appendChild(
+      makeElement("p", "", "หลักฐาน: " + question.evidence)
+    );
+
+    let answerText = "คำตอบของนักเรียน: ไม่ได้ส่งคำตอบ";
+
+    if (confirmed && selectedIndex !== null) {
+      answerText =
+        "คำตอบของนักเรียน: " +
+        LETTERS[selectedIndex] + ". " +
+        question.choices[selectedIndex].text;
+    }
+
+    item.appendChild(
+      makeElement("div", "student-answer", answerText)
+    );
+
+    const answerBox = makeElement("div", "answer-box");
+
+    answerBox.appendChild(
+      makeElement(
+        "strong",
+        "",
+        "เฉลย: " +
+        LETTERS[question.correctIndex] + ". " +
+        question.choices[question.correctIndex].text
+      )
+    );
+
+    answerBox.appendChild(
+      makeElement("p", "", "เหตุผล: " + question.explanation)
+    );
+
+    item.appendChild(answerBox);
+    review.appendChild(item);
+  });
+}
+
+function goHome() {
+  clearClock();
+
+  state.seat = null;
+  state.submitted = false;
+  state.questions = [];
+
+  showScreen("homeScreen");
+}
+
+function retryQuiz() {
+  const seat = state.seat;
+
+  if (seat === null) {
+    goHome();
+    return;
+  }
+
+  startQuiz(seat);
+}
+
+/* ============================================================
+   TEACHER DASHBOARD
+   ============================================================ */
+
+function openTeacherPanel() {
+  const active = state.seat !== null && !state.submitted;
+
+  byId("teacherOverlay").hidden = false;
+  byId("seedToggle").checked = seedEnabled;
+  byId("seedToggle").disabled = active;
+
+  byId("teacherSeat").value =
+    active ? String(state.seat) : String(lastTeacherSeat);
+
+  byId("teacherError").textContent = "";
+  byId("copyStatus").textContent = "";
+
+  refreshSeedDescription();
+  renderTeacherSet();
+  byId("teacherSeat").focus();
+}
+
+function closeTeacherPanel() {
+  byId("teacherOverlay").hidden = true;
+  byId("teacherButton").focus();
+}
+
+function refreshSeedDescription() {
+  const active = state.seat !== null && !state.submitted;
+
+  let label = seedEnabled
+    ? "Seed เปิด • ค่าเริ่มต้น KRK-2569 • เลขที่เดิมได้ชุดเดิม"
+    : "Seed คงที่ปิด • ใช้ Session Seed ที่กำหนดจากเวลาเปิดหน้านี้";
+
+  if (active) {
+    label += " • ไม่สามารถเปลี่ยน Seed ระหว่างทำกิจกรรม";
+  }
+
+  byId("seedDescription").textContent = label;
+
+  byId("seedFooter").textContent = seedEnabled
+    ? "โหมดฝึกซ้อม • Seed คงที่ • ทำซ้ำได้"
+    : "โหมดฝึกซ้อม • Session Seed • ทำซ้ำได้ในเซสชัน";
+}
+
+function renderTeacherSet() {
+  const seat = validSeat(byId("teacherSeat").value);
+
+  if (seat === null) {
+    byId("teacherError").textContent =
+      "กรุณาระบุเลขที่เป็นจำนวนเต็ม 1–30";
+    return;
+  }
+
+  byId("teacherError").textContent = "";
+  byId("copyStatus").textContent = "";
+
+  lastTeacherSeat = seat;
+  lastTeacherSet = buildSet(seat);
+
+  byId("teacherPreviewTitle").textContent =
+    "📋 ชุดโจทย์เลขที่ " + seat;
+
+  byId("toggleAnswers").textContent =
+    teacherAnswersVisible ? "🙈 ซ่อนเฉลย" : "👁️ แสดงเฉลย";
+
+  const container = byId("teacherQuestionList");
+  container.replaceChildren();
+
+  lastTeacherSet.forEach(function(question, index) {
+    const block = makeElement("div", "teacher-question");
+
+    block.appendChild(
+      makeElement("h4", "", "ข้อ " + (index + 1) + " • " + question.topic)
+    );
+
+    block.appendChild(
+      makeElement("p", "", question.prompt)
+    );
+
+    block.appendChild(
+      makeElement("p", "", "สถานการณ์: " + question.situation)
+    );
+
+    block.appendChild(
+      makeElement("p", "", "หลักฐาน: " + question.evidence)
+    );
+
+    question.choices.forEach(function(choice, optionIndex) {
+      const isCorrect = optionIndex === question.correctIndex;
+
+      const label =
+        LETTERS[optionIndex] + ". " +
+        choice.text +
+        (teacherAnswersVisible && isCorrect ? " ✓" : "");
+
+      block.appendChild(
+        makeElement(
+          "div",
+          teacherAnswersVisible && isCorrect
+            ? "teacher-option correct"
+            : "teacher-option",
+          label
+        )
+      );
+    });
+
+    if (teacherAnswersVisible) {
+      const answerBox = makeElement("div", "answer-box");
+
+      answerBox.appendChild(
+        makeElement(
+          "strong",
+          "",
+          "เฉลย " + LETTERS[question.correctIndex] +
+          " • " + question.choices[question.correctIndex].text
+        )
+      );
+
+      answerBox.appendChild(
+        makeElement(
+          "p",
+          "",
+          "เหตุผล / วิธีวิเคราะห์: " + question.explanation
+        )
+      );
+
+      block.appendChild(answerBox);
+    }
+
+    container.appendChild(block);
+  });
+
+  analyzeDuplicates();
+}
+
+function analyzeDuplicates() {
+  const sets = [];
+
+  for (let seat = 1; seat <= 30; seat++) {
+    sets.push(buildSet(seat));
+  }
+
+  let pairs = 0;
+  let fullDuplicates = 0;
+  let matchedQuestions = 0;
+
+  const duplicateMember = new Set();
+
+  for (let i = 0; i < sets.length; i++) {
+    for (let j = i + 1; j < sets.length; j++) {
+      pairs++;
+
+      let matches = 0;
+
+      for (let q = 0; q < TOTAL_QUESTIONS; q++) {
+        if (sets[i][q].signature === sets[j][q].signature) {
+          matches++;
+          matchedQuestions++;
+        }
+      }
+
+      if (matches === TOTAL_QUESTIONS) {
+        fullDuplicates++;
+        duplicateMember.add(j);
+      }
+    }
+  }
+
+  const totalComparisons = pairs * TOTAL_QUESTIONS;
+  const uniqueCount = new Set(
+    sets.map(function(set) {
+      return JSON.stringify(
+        set.map(function(question) {
+          return question.signature;
+        })
+      );
+    })
+  ).size;
+
+  byId("exactDuplicateRate").textContent =
+    fixedPercent(fullDuplicates, pairs);
+
+  byId("partialDuplicateRate").textContent =
+    fixedPercent(matchedQuestions, totalComparisons);
+
+  byId("uniqueSets").textContent = String(uniqueCount);
+  byId("pairsChecked").textContent = String(pairs);
+
+  byId("duplicateDetails").textContent =
+    "ตรวจสอบชุดซ้ำทั้งชุด " + fullDuplicates + " จาก " +
+    pairs + " คู่ • สถานการณ์รายข้อที่ตรงกัน " +
+    matchedQuestions + " จาก " + totalComparisons +
+    " การเปรียบเทียบ • ชุดไม่ซ้ำทั้งชุด " +
+    uniqueCount + " จาก 30 เลขที่";
+}
+
+function toggleSeed() {
+  if (state.seat !== null && !state.submitted) {
+    byId("seedToggle").checked = seedEnabled;
+    byId("teacherError").textContent =
+      "กรุณาส่งกิจกรรมปัจจุบันให้เสร็จก่อนเปลี่ยนค่า Seed";
+    return;
+  }
+
+  seedEnabled = byId("seedToggle").checked;
+
+  refreshSeedDescription();
+  renderTeacherSet();
+}
+
+function toggleTeacherAnswers() {
+  teacherAnswersVisible = !teacherAnswersVisible;
+  renderTeacherSet();
+}
+
+function buildTeacherAnswerText() {
+  if (!lastTeacherSet) return "";
+
+  const lines = [
+    "KRK SCIENCE LAB",
+    "ชุดโจทย์เลขที่ " + lastTeacherSeat,
+    "Seed: " + (seedEnabled ? "KRK-2569" : "Session Seed"),
+    ""
+  ];
+
+  lastTeacherSet.forEach(function(question, index) {
+    lines.push("ข้อ " + (index + 1) + " • " + question.topic);
+    lines.push(question.prompt);
+    lines.push("สถานการณ์: " + question.situation);
+    lines.push("หลักฐาน: " + question.evidence);
+
+    question.choices.forEach(function(choice, i) {
+      lines.push(LETTERS[i] + ". " + choice.text);
+    });
+
+    lines.push(
+      "เฉลย: " + LETTERS[question.correctIndex] +
+      ". " + question.choices[question.correctIndex].text
+    );
+
+    lines.push("เหตุผล: " + question.explanation);
+    lines.push("");
+  });
+
+  return lines.join("\n");
+}
+
+async function copyTeacherAnswers() {
+  const text = buildTeacherAnswerText();
+
+  if (!text) {
+    byId("copyStatus").textContent = "ยังไม่มีข้อมูลสำหรับคัดลอก";
+    return;
+  }
+
+  try {
+    if (navigator.clipboard &&
+        typeof navigator.clipboard.writeText === "function") {
+      await navigator.clipboard.writeText(text);
+      byId("copyStatus").textContent =
+        "✓ คัดลอกโจทย์และเฉลยทั้ง 5 ข้อแล้ว";
+    } else {
+      byId("copyStatus").textContent =
+        "Sandbox นี้ไม่รองรับการคัดลอกอัตโนมัติ สามารถอ่านเฉลยในแผงนี้ได้";
+    }
+  } catch (error) {
+    byId("copyStatus").textContent =
+      "ไม่สามารถคัดลอกใน Sandbox นี้ได้ กรุณาใช้การเลือกข้อความด้วยตนเอง";
+  }
+}
+
+/* ---------- Event bindings ---------- */
+
+byId("startForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  startQuiz(validSeat(byId("studentSeat").value));
+});
+
+byId("studentSeat").addEventListener("input", function() {
+  byId("startError").textContent = "";
+});
+
+byId("confirmAnswer").addEventListener(
+  "click", confirmCurrentAnswer
+);
+
+byId("nextQuestion").addEventListener("click", nextStep);
+
+byId("retryButton").addEventListener("click", retryQuiz);
+byId("homeButton").addEventListener("click", goHome);
+
+byId("teacherButton").addEventListener(
+  "click", openTeacherPanel
+);
+
+byId("closeTeacher").addEventListener(
+  "click", closeTeacherPanel
+);
+
+byId("teacherOverlay").addEventListener("click", function(event) {
+  if (event.target === byId("teacherOverlay")) {
+    closeTeacherPanel();
+  }
+});
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape" && !byId("teacherOverlay").hidden) {
+    closeTeacherPanel();
+  }
+});
+
+byId("previewButton").addEventListener(
+  "click", renderTeacherSet
+);
+
+byId("teacherSeat").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    renderTeacherSet();
+  }
+});
+
+byId("seedToggle").addEventListener("change", toggleSeed);
+
+byId("toggleAnswers").addEventListener(
+  "click", toggleTeacherAnswers
+);
+
+byId("copyAnswers").addEventListener(
+  "click", copyTeacherAnswers
+);
+
+/* ---------- Graceful error handling ---------- */
+
+window.addEventListener("error", function() {
+  const errorBox = byId("startError");
+
+  if (errorBox && !byId("homeScreen").hidden) {
+    errorBox.textContent =
+      "ระบบพบข้อขัดข้อง กรุณาลองเปิดกิจกรรมใหม่อีกครั้ง";
+  }
+});
+
+/*
+  Client-side security and privacy:
+  - No external APIs or CDN
+  - No eval()
+  - No Math.random()
+  - No alert(), confirm(), or prompt()
+  - Dynamic text uses textContent
+  - No localStorage access; no student data persists
+  - Correct answers are intentionally available in page source
+*/
+
+/* ---------- Initialize ---------- */
+
+refreshSeedDescription();
+showScreen("homeScreen");
+
+</script>
+</body>
+</html>
